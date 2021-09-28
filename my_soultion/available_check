@@ -1,0 +1,20 @@
+import cv2
+
+cap1 = cv2.VideoCapture(1)
+cap2 = cv2.VideoCapture(2)
+
+while True:
+    ret1, frame1 = cap1.read()
+    ret2, frame2 = cap2.read()
+
+    if not ret1 and ret2:
+        print("NOT FOUND FRAME")
+        break
+
+    cv2.imshow('frame1', frame1)
+    cv2.imshow('frame2', frame2)
+    if cv2.waitKey(1) == ord('q'):
+        break
+
+cap.release()
+cv2.destoryAllWindows()
