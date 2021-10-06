@@ -8,11 +8,7 @@ pathR = "./data/stereoR/"'''
 
 # Take Image on stereo Camera
 capL = cv2.VideoCapture(1)	# Left Cam
-imgL = cv2.imwrite('imgL.jpg', retL)
-
 capR = cv2.VideoCapture(2)	# Right Cam
-retR = capR.read()[1]
-imgR = cv2.imwrite('imgR.jpg', retR)
 
 pathL = "/dev/ttys001"
 pathR = "/dev/ttys002"
@@ -26,33 +22,27 @@ img_ptsL = []
 img_ptsR = []
 obj_pts = []
 
-for i in tqdm(range(1,12)):
-    retL = capL.read()[1]
+#outputL = capL.read()[1]
+#outputR = capR.read()[1]
 
-    
-	imgL = cv2.imread(pathL+"img%d.png"%i)
-	imgR = cv2.imread(pathR+"img%d.png"%i)
-	imgL_gray = cv2.imread(pathL+"img%d.png"%i,0)
-	imgR_gray = cv2.imread(pathR+"img%d.png"%i,0)
+outputL = cv2.imread('../aloeL.jpg')
+outputR = cv2.imread('../aloeR.jpg')
 
-	outputL = imgL.copy()
-	outputR = imgR.copy()
-
-	retR, cornersR =  cv2.findChessboardCorners(outputR,(9,6),None)
-	retL, cornersL = cv2.findChessboardCorners(outputL,(9,6),None)
-
-	if retR and retL:
-		obj_pts.append(objp)
-		cv2.cornerSubPix(imgR_gray,cornersR,(11,11),(-1,-1),criteria)
-		cv2.cornerSubPix(imgL_gray,cornersL,(11,11),(-1,-1),criteria)
-		cv2.drawChessboardCorners(outputR,(9,6),cornersR,retR)
-		cv2.drawChessboardCorners(outputL,(9,6),cornersL,retL)
-		cv2.imshow('cornersR',outputR)
-		cv2.imshow('cornersL',outputL)
-		cv2.waitKey(0)
-
-		img_ptsL.append(cornersL)
-		img_ptsR.append(cornersR)
+imgL_gray = cv2.cvtColor(outputL, cv2.COLOR_BGR2GRAY)
+imgR_gray = cv2.cvtColor(outputR, cv2.COLOR_BGR2GRAY)
+retR, cornersR =  cv2.findChessboardCorners(outputR,(9,6),None)
+retL, cornersL = cv2.findChessboardCorners(outputL,(9,6),None)
+if retR and retL:
+	obj_pts.append(objp)
+	cv2.cornerSubPix(imgR_gray,cornersR,(11,11),(-1,-1),criteria)
+	cv2.cornerSubPix(imgL_gray,cornersL,(11,11),(-1,-1),criteria)
+	cv2.drawChessboardCorners(outputR,(9,6),cornersR,retR)
+	cv2.drawChessboardCorners(outputL,(9,6),cornersL,retL)
+	cv2.imshow('cornersR',outputR)
+	cv2.imshow('cornersL',outputL)
+	cv2.waitKey(0)
+	img_ptsL.append(cornersL)
+	img_ptsR.append(cornersR)
 
 
 # Calibrating left camera
