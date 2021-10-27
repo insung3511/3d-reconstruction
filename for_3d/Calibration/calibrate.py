@@ -27,7 +27,7 @@ import PIL.Image
 
 #Define size of chessboard target. 
 
-chessboard_size = (7,5)
+chessboard_size = (6,4)
 
 #Define arrays to save detected points
 obj_points = [] #3D points in real world space 
@@ -51,6 +51,7 @@ for image_path in tqdm(calibration_paths):
 	image = cv2.imread(image_path)
 	gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	print("Image loaded, Analizying...")
+	print("Image path: ", image_path)
 	#find chessboard corners
 	ret,corners = cv2.findChessboardCorners(gray_image, chessboard_size, None)
 

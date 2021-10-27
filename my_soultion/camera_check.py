@@ -10,8 +10,8 @@ pathR = "./data/stereoR/"'''
 capL = cv2.VideoCapture(1)	# Left Cam
 capR = cv2.VideoCapture(2)	# Right Cam
 
-pathL = "/dev/ttys001"
-pathR = "/dev/ttys002"
+pathL = "/dev/ttys000"
+pathR = "/dev/ttys001"
 
 # Termination criteria for refining the detected corners
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
