@@ -18,10 +18,9 @@ while True:
         imgR = cv2.cvtColor(frameR, cv2.COLOR_BGR2GRAY)
 
         stereo = cv2.StereoBM_create()
-        disparity = stereo.compute(imgL,imgR)
+        disparity = stereo.compute(imgL, imgR)
         
         cv2.imshow('gray', disparity)
-
         if cv2.waitKey(1) == ord('q'):
             break
 

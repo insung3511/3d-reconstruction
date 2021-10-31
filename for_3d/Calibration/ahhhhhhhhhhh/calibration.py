@@ -5,8 +5,8 @@ import argparse
 import sys
 
 # Set the values for your cameras
-capL = cv2.VideoCapture(2)
-capR = cv2.VideoCapture(1)
+capL = cv2.VideoCapture(0)
+capR = cv2.VideoCapture(2)
 
 i = 0
 
