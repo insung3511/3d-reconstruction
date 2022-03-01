@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 
 #Function to create point cloud file
 def create_output(vertices, colors, filename):
-	colors = colors.reshape(-1,3)
+	colors = colors.reshape(0,0)
 	vertices = np.hstack([vertices.reshape(-1,3),colors])
 
 	ply_header = '''ply
@@ -17,6 +17,9 @@ def create_output(vertices, colors, filename):
 		property float x
 		property float y
 		property float z
+		property uchar red
+		property uchar green
+		property uchar blue
 		end_header
 		'''
 	with open(filename, 'w') as f:
