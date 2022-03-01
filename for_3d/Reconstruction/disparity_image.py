@@ -63,6 +63,7 @@ new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(K,dist,(w,h),1,(w,h))
 img_1_undistorted = cv2.undistort(img_1, K, dist, None, new_camera_matrix)
 img_2_undistorted = cv2.undistort(img_2, K, dist, None, new_camera_matrix)
 
+# downsampled the image for more perform
 img_1_downsampled = downsample_image(img_1_undistorted,1)
 img_2_downsampled = downsample_image(img_2_undistorted,1)
 
