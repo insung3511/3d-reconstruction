@@ -1,18 +1,3 @@
-'''
-Created by Omar Padierna "Para11ax" on Jan 1 2019
-
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
-'''
-
 import cv2
 import numpy as np 
 import glob
@@ -20,10 +5,6 @@ from tqdm import tqdm
 import PIL.ExifTags
 import PIL.Image
 from matplotlib import pyplot as plt 
-
-#=====================================
-# Function declarations
-#=====================================
 
 #Function to create point cloud file
 def create_output(vertices, colors, filename):
