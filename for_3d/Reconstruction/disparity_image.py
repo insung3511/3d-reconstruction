@@ -17,9 +17,6 @@ def create_output(vertices, colors, filename):
 		property float x
 		property float y
 		property float z
-		property uchar red
-		property uchar green
-		property uchar blue
 		end_header
 		'''
 	with open(filename, 'w') as f:
@@ -49,8 +46,8 @@ K = np.load('./camera_params/K.npy')
 dist = np.load('./camera_params/dist.npy')
 
 #Specify image paths
-img_path1 = 'aloeL.jpg'
-img_path2 = 'aloeR.jpg'
+img_path1 = 'car_left.png'
+img_path2 = 'car_right.png'
 
 #Load pictures
 img_1 = cv2.imread(img_path1)
@@ -64,8 +61,8 @@ img_1_undistorted = cv2.undistort(img_1, K, dist, None, new_camera_matrix)
 img_2_undistorted = cv2.undistort(img_2, K, dist, None, new_camera_matrix)
 
 # downsampled the image for more perform
-img_1_downsampled = downsample_image(img_1_undistorted,1)
-img_2_downsampled = downsample_image(img_2_undistorted,1)
+img_1_downsampled = downsample_image(img_1_undistorted,2)
+img_2_downsampled = downsample_image(img_2_undistorted,2)
 
 #cv2.imwrite('undistorted_left.jpg', img_1_downsampled)
 #cv2.imwrite('undistorted_right.jpg', img_2_downsampled)
