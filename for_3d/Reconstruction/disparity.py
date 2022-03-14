@@ -94,14 +94,14 @@ h,w = img_2_downsampled.shape[:2]
 
 focal_length = np.load('./camera_params/FocalLength.npy')
 
-Q = np.float32([[1,0,0,-w/2.0],
-				[0,-1,0,h/2.0],
+Q = np.float32([[1,0,0,-w/2.6],
+				[0,-1,0,h/2.6],
 				[0,0,0,-focal_length],
 				[0,0,1,0]])
 
 Q2 = np.float32([[1,0,0,0],
 				[0,-1,0,0],
-				[0,0,focal_length*0.062,0], 
+				[0,0,focal_length*0.05,0], 
 				[0,0,0,1]])
 
 points_3D = cv2.reprojectImageTo3D(disparity_map, Q2)
