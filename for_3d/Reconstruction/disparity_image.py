@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 
 #Function to create point cloud file
 def create_output(vertices, colors, filename):
-	colors = colors.reshape(0,0)
+	colors = colors.reshape(-1,3)
 	vertices = np.hstack([vertices.reshape(-1,3),colors])
 
 	ply_header = '''ply
@@ -49,8 +49,8 @@ K = np.load('./camera_params/K.npy')
 dist = np.load('./camera_params/dist.npy')
 
 #Specify image paths
-img_path1 = 'car_left.png'
-img_path2 = 'car_right.png'
+img_path1 = 'aloeL.jpg'
+img_path2 = 'aloeR.jpg'
 
 #Load pictures
 img_1 = cv2.imread(img_path1)

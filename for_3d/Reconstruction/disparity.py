@@ -1,3 +1,4 @@
+
 from matplotlib import pyplot as plt 
 from tqdm import tqdm
 import numpy as np 
@@ -35,7 +36,6 @@ def downsample_image(image, reduce_factor):
 
 		image = cv2.pyrDown(image, dstsize= (col//2, row // 2))
 	return image
-
 
 #=========================================================
 # Stereo 3D reconstruction
