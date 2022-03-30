@@ -9,8 +9,8 @@ import glob
 import save_image as si
 
 def create_output(vertices, colors, filename):
-	colors = colors.reshape(-1,3)
-	vertices = np.hstack([vertices.reshape(-1,3),colors])
+	colors = colors.reshape(-1, 3)
+	vertices = np.hstack([vertices.reshape(-1, 3),colors])
 
 	ply_header = '''ply
 		format ascii 1.0
@@ -67,19 +67,19 @@ img_2_downsampled = img_2_undistorted
 
 #Set disparity parameters
 #Note: disparity range is tuned according to specific parameters obtained through trial and error. 
-win_size = 5
+win_size = 2
 min_disp = -1
 max_disp = 63 #min_disp * 9
 num_disp = max_disp - min_disp # Needs to be divisible by 16
 
 stereo = cv2.StereoSGBM_create(minDisparity= min_disp,
 	numDisparities = num_disp,
-	blockSize = 5,
-	uniquenessRatio = 5,
-	speckleWindowSize = 5,
-	speckleRange = 5,
+	blockSize = 3,
+	uniquenessRatio = 3,
+	speckleWindowSize = 3,
+	speckleRange = 3,
 	disp12MaxDiff = 2,
-	P1 = 8*3*win_size**2,#8*3*win_size**2,
+	P1 = 16*3*win_size**2,#8*3*win_size**2,
 	P2 =32*3*win_size**2) #32*3*win_size**2)
 
 print ("\nComputing the disparity  map...")
@@ -94,14 +94,14 @@ h,w = img_2_downsampled.shape[:2]
 
 focal_length = np.load('./camera_params/FocalLength.npy')
 
-Q = np.float32([[1,0,0,-w/2.6],
-				[0,-1,0,h/2.6],
+Q = np.float32([[1,0,0,-w/2.3],
+				[0,-1,0,h/2.3],
 				[0,0,0,-focal_length],
 				[0,0,1,0]])
 
 Q2 = np.float32([[1,0,0,0],
 				[0,-1,0,0],
-				[0,0,focal_length*0.05,0], 
+				[0,0,focal_length*0.062,0], 
 				[0,0,0,1]])
 
 points_3D = cv2.reprojectImageTo3D(disparity_map, Q2)

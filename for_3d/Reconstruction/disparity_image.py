@@ -49,8 +49,8 @@ K = np.load('./camera_params/K.npy')
 dist = np.load('./camera_params/dist.npy')
 
 #Specify image paths
-img_path1 = 'aloeL.jpg'
-img_path2 = 'aloeR.jpg'
+img_path1 = 'L.PNG'
+img_path2 = 'R.PNG'
 
 #Load pictures
 img_1 = cv2.imread(img_path1)
@@ -78,10 +78,10 @@ num_disp = max_disp - min_disp # Needs to be divisible by 16
 #Create Block matching object. 
 stereo = cv2.StereoSGBM_create(minDisparity= min_disp,
 	numDisparities = num_disp,
-	blockSize = 5,
-	uniquenessRatio = 5,
-	speckleWindowSize = 5,
-	speckleRange = 5,
+	blockSize = 3,
+	uniquenessRatio = 3,
+	speckleWindowSize = 3,
+	speckleRange = 3,
 	disp12MaxDiff = 2,
 	P1 = 8*3*win_size**2,#8*3*win_size**2,
 	P2 =32*3*win_size**2) #32*3*win_size**2)
@@ -120,4 +120,3 @@ output_file = 'reconstructed.ply'
 
 print ("\n Creating the output file... \n")
 create_output(output_points, output_colors, output_file)
-
